@@ -12,11 +12,12 @@ typedef struct cerror_t_nest {
 	cerror_id_t type;
 	cerror_id_t code;
 	char *message;
-	const struct cerror_t_nest *cause;
+	struct cerror_t_nest *cause;
 } cerror_t;
 
 bool cerr_library_init();
 void cerr_library_destroy();
-bool cerr_new_error( const cerror_t **err, const cerror_id_t type, const cerror_id_t code, const char *message, const cerror_t *cause );
-bool cerr_libc_error( const cerror_t **err, const cerror_id_t code );
-bool cerr_libc_error_errno( const cerror_t **err );
+bool cerr_new_error( cerror_t **err, const cerror_id_t type, const cerror_id_t code, const char *message, cerror_t *cause );
+bool cerr_libc_error( cerror_t **err, const cerror_id_t code );
+bool cerr_libc_error_errno( cerror_t **err );
+void cerr_error_free( cerror_t *err );

@@ -12,7 +12,7 @@ TOPDIR := $(PWD)
 INCDIR := $(TOPDIR)/include
 
 CPPFLAGS += -I$(INCDIR) -D_GNU_SOURCE
-CFLAGS += -fPIC -Werror -Wall -Wextra -Wfatal-errors -Wformat=2 -Winit-self -Wswitch-enum -Wunused-parameter -Wstrict-aliasing=2 -Wstrict-overflow=5 -Wfloat-equal -Wundef -Wshadow -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wconversion -Wshorten-64-to-32 -std=gnu99
+CFLAGS += -fPIC -std=gnu99 -Werror -Wall -Wextra -Wfatal-errors -Wformat=2 -Winit-self -Wswitch-enum -Wunused-parameter -Wstrict-aliasing=2 -Wstrict-overflow=5 -Wfloat-equal -Wundef -Wshadow -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wconversion -Wshorten-64-to-32 -Waggregate-return -Wstrict-prototypes -Wold-style-definition -Wmissing-declarations -Wmissing-noreturn -Wmissing-format-attribute -Wpacked -Wredundant-decls -Wnested-externs -Wunreachable-code -Winline -Winvalid-pch -Wvolatile-register-var -Wpointer-sign
 
 CLEAN_TARGETS := $(SUBDIRS:=/clean)
 DEPCLEAN_TARGETS := $(SUBDIRS:=/depclean)

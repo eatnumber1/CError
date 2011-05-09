@@ -20,7 +20,9 @@ bool cerr_library_init() {
 
 	char *msg = get_libc_error_message(ENOMEM);
 	if( msg == NULL ) {
+		int erno = errno;
 		free(nomem);
+		errno = erno;
 		return false;
 	}
 	nomem->message = msg;

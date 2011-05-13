@@ -17,3 +17,4 @@ bool fclose_e( cerror_t **err, FILE *stream );
 bool fflush_e( cerror_t **err, FILE *stream );
 
 void *realloc_e( cerror_t **err, void *ptr, size_t size );
+void *malloc_e( cerror_t **err, size_t size );

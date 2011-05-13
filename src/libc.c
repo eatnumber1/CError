@@ -77,3 +77,12 @@ void *realloc_e( cerror_t **err, void *ptr, size_t size ) {
 	}
 	return ret;
 }
+
+void *malloc_e( cerror_t **err, size_t size ) {
+	void *ret = malloc(size);
+	if( ret == NULL ) {
+		cerr_libc_error_errno(err);
+		return NULL;
+	}
+	return ret;
+}

@@ -21,3 +21,4 @@ bool cerr_new_error( cerror_t **err, const cerror_id_t type, const cerror_id_t c
 bool cerr_libc_error( cerror_t **err, const cerror_id_t code );
 bool cerr_libc_error_errno( cerror_t **err );
 void cerr_error_free( cerror_t *err );
+void cerr_propagate_error( cerror_t **dest, cerror_t *src );

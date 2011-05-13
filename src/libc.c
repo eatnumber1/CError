@@ -1,3 +1,5 @@
+#import <assert.h>
+
 #import "libc.h"
 
 int printf_e( cerror_t **err, const char *format, ... ) {
@@ -35,6 +37,8 @@ size_t fread_e( cerror_t **err, void *ptr, size_t size, size_t nitems, FILE *str
 	if( ferror(stream) ) {
 		cerr_libc_error_errno(err);
 		return ret;
+	} else if( ret != nitems ) {
+		assert(feof(stream));
 	}
 	return ret;
 }

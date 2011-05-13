@@ -75,3 +75,11 @@ void cerr_error_free( cerror_t *err ) {
 	free(err->message);
 	free(err);
 }
+
+void cerr_propagate_error( cerror_t **dest, cerror_t *src ) {
+	if( dest == NULL ) {
+		cerr_error_free(src);
+	} else {
+		*dest = src;
+	}
+}

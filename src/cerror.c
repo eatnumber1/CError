@@ -5,16 +5,19 @@
 #import "cerror.h"
 
 static const char * const CERROR_DOMAIN_LIBC = "CERROR_DOMAIN_LIBC";
-
 cerror_id_t CERROR_ID_LIBC;
 
-static cerror_t *nomem;
+static bool initialized = false;
+
+static cerror_t *nomem = NULL;
 
 static char *get_libc_error_message( int code ) {
 	return strdup(strerror(code));
 }
 
 bool cerr_library_init() {
+	if( initialized ) return true;
+
 	nomem = malloc(sizeof(cerror_t));
 	if( nomem == NULL ) return false;
 
@@ -32,11 +35,14 @@ bool cerr_library_init() {
 	nomem->code = CERROR_CODE_NOMEM;
 
 	nomem->cause = NULL;
+
+	initialized = true;
 	return true;
 }
 
 void cerr_library_destroy() {
 	cerr_error_free(nomem);
+	initialized = false;
 }
 
 bool cerr_new_error( cerror_t **err, const cerror_id_t type, const cerror_id_t code, const char *message, cerror_t *cause ) {

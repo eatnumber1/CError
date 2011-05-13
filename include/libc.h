@@ -15,3 +15,5 @@ size_t fwrite_e( cerror_t **err, const void *ptr, size_t size, size_t nitems, FI
 bool fclose_e( cerror_t **err, FILE *stream );
 
 bool fflush_e( cerror_t **err, FILE *stream );
+
+void *realloc_e( cerror_t **err, void *ptr, size_t size );

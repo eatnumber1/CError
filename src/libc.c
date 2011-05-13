@@ -1,4 +1,5 @@
 #import <assert.h>
+#import <stdlib.h>
 
 #import "libc.h"
 
@@ -66,4 +67,13 @@ bool fflush_e( cerror_t **err, FILE *stream ) {
 		return false;
 	}
 	return true;
+}
+
+void *realloc_e( cerror_t **err, void *ptr, size_t size ) {
+	void *ret = realloc(ptr, size);
+	if( ret == NULL ) {
+		cerr_libc_error_errno(err);
+		return NULL;
+	}
+	return ret;
 }
